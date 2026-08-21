@@ -88,7 +88,9 @@
     transition:width .25s var(--ease), height .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
     mix-blend-mode:difference;
   }
-  #cursor.big{ width:64px; height:64px; background:var(--yellow); border-color:transparent; mix-blend-mode:normal; }
+  /* Inverts colors under the cursor instead of painting a solid block over
+     content, so text and images stay fully legible while hovering. */
+  #cursor.big{ width:46px; height:46px; background:var(--paper); border-color:transparent; }
   @media (max-width:900px), (hover:none){ #cursor{ display:none; } }
 
   /* ---------- nav ---------- */
@@ -381,6 +383,7 @@
   }
   .poster.p1{ background:linear-gradient(145deg,var(--blue),#1b2e9c); }
   .poster.p2{ background:linear-gradient(145deg,var(--coral),#b6280f); }
+  .poster.p3{ background:linear-gradient(145deg,#26242f,var(--ink)); }
   .poster-index{ font-family:'Space Mono',monospace; font-size:13px; opacity:.85; }
   .poster-word{
     font-family:'Fraunces',serif; font-weight:800; font-style:italic;
@@ -706,6 +709,23 @@
           </div>
         </article>
 
+        <!-- TODO: replace this poster tile with a real flyer image or Behance link — see README -->
+        <article class="card reveal">
+          <div class="tape"></div>
+          <div class="card-media poster p3">
+            <span class="poster-index">06 / Print</span>
+            <span class="poster-word">Flyer<br>Design</span>
+          </div>
+          <div class="card-body">
+            <span class="card-tag">Flyer Design</span>
+            <h3>Flyer Design</h3>
+            <p>Event and promo flyers designed to earn a glance in a crowded feed or a stacked table.</p>
+            <a class="card-link" href="#">Add image or link
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 11L11 2M11 2H4M11 2V9" stroke="currentColor" stroke-width="1.6"/></svg>
+            </a>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -847,7 +867,7 @@
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     });
-    var bigTargets = document.querySelectorAll('a, button, .card');
+    var bigTargets = document.querySelectorAll('.btn, .card, .contact-email, .social-row a, .card-link');
     bigTargets.forEach(function(el){
       el.addEventListener('mouseenter', function(){ cursor.classList.add('big'); });
       el.addEventListener('mouseleave', function(){ cursor.classList.remove('big'); });
